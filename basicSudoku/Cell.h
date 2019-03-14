@@ -10,6 +10,7 @@ public:
 	void setValue(int newValue) { m_value = newValue; }
 	bool isCorrect() const { return m_isCorrect; }
 	bool isOriginal() const { return m_isOriginal; }
+	void setCorrect(bool correct) { m_isCorrect = correct; }
 private:
 	int m_row;
 	int m_col;
