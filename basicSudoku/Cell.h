@@ -2,7 +2,7 @@
 class Cell
 {
 public:
-	Cell() : m_row(int()), m_col(int()), m_value(int()), m_isOriginal(true),
+	Cell() : m_value(int()), m_isOriginal(true),
 		m_isCorrect(true) {	}
 
 	~Cell();
@@ -12,8 +12,6 @@ public:
 	bool isOriginal() const { return m_isOriginal; }
 	void setCorrect(bool correct) { m_isCorrect = correct; }
 private:
-	int m_row;
-	int m_col;
 	int m_value;
 	bool m_isOriginal;
 	bool m_isCorrect;
