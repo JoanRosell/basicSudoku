@@ -1,19 +1,24 @@
 #include "Sudoku.h"
 
-
-
-Sudoku::Sudoku()
-{
-
-}
-
-
 Sudoku::~Sudoku()
 {
 }
 
 void Sudoku::loadFromFile(const std::string & fileName)
 {
+	std::ifstream file;
+	file.open(fileName);
+	std::string row;
+	row.reserve(18);
+	originalBoardValues.reserve(81 * 2);
+	if (file.is_open())
+	{
+		while (getline(file, row))
+		{
+			originalBoardValues.append(row);
+			row.clear();
+		}
+	}
 }
 
 void Sudoku::setNumber(int number, int row, int col)
@@ -35,6 +40,16 @@ bool Sudoku::checkWinCondition() const
 	}
 
 	return gameWon;
+}
+
+bool Sudoku::checkRow() const
+{
+	return false;
+}
+
+bool Sudoku::checkCol() const
+{
+	return false;
 }
 
 //	More work needed, end check loop
