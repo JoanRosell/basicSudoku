@@ -4,21 +4,49 @@ Sudoku::~Sudoku()
 {
 }
 
+void Sudoku::loadBoardFromString()
+{
+	int stringSize = originalBoardValues.size();
+	int boardElements = MAX_ROWS * MAX_COLS;
+	
+	if (stringSize == boardElements)
+		for (int i = 0; i < MAX_ROWS; i++)
+			for (int j = 0; j < MAX_COLS; j++)
+			{
+				int thisValue = originalBoardValues.at(i*j) - 48;
+				board[i][j].setValue(thisValue);
+
+				if (thisValue != 0)
+				{
+					board[i][j].setModificable(false);
+					board[i][j].setCorrect(true);
+				}
+			}
+				
+}
+
 void Sudoku::loadFromFile(const std::string & fileName)
 {
 	std::ifstream file;
-	file.open(fileName);
 	std::string row;
-	row.reserve(18);
-	originalBoardValues.reserve(81 * 2);
+
+	row.reserve(17);
+	originalBoardValues.reserve(row.size()*MAX_ROWS);
+
+	file.open(fileName);
 	if (file.is_open())
 	{
 		while (getline(file, row))
 		{
+			row += " ";
 			originalBoardValues.append(row);
 			row.clear();
 		}
 	}
+
+	formatString();
+	loadBoardFromString();
+	file.close();
 }
 
 void Sudoku::setNumber(int number, int row, int col)
@@ -40,6 +68,12 @@ bool Sudoku::checkWinCondition() const
 	}
 
 	return gameWon;
+}
+
+void Sudoku::formatString()
+{
+	std::string::iterator stringEnd = std::remove(originalBoardValues.begin(), originalBoardValues.end(), ' ');
+	originalBoardValues.erase(stringEnd, originalBoardValues.end());
 }
 
 bool Sudoku::checkRow() const
