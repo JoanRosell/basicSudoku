@@ -1,9 +1,11 @@
 #pragma once
 #include <string>
-#include "Cell.h"
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include "Cell.h"
+#include "ConsoleHandler.h"
+
 class Sudoku
 {
 public:
