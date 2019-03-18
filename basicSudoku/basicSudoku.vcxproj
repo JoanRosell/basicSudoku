@@ -116,11 +116,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="ConsoleHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sudoku.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="ConsoleHandler.h" />
     <ClInclude Include="Sudoku.h" />
   </ItemGroup>
   <ItemGroup>
