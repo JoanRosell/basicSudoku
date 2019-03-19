@@ -56,28 +56,72 @@ void Sudoku::loadBoardFromString()
 void Sudoku::setNumber(int number, int row, int col)
 {
 	if (board[row - 1][col - 1].isModifiable())
-		board[row - 1][col - 1].setValue(number);
-}
-
-bool Sudoku::checkWinCondition() const
-{
-	bool cellIsCorrect(true);
-	int row(0);
-	int col(0);
-
-	while (cellIsCorrect && row < MAX_ROWS && col < MAX_COLS)
 	{
-		cellIsCorrect = board[row][col].isCorrect();
-		col++;
-
-		if (col == MAX_COLS)
-		{
-			col = 0;
-			row++;
-		}
+		board[row - 1][col - 1].setValue(number);
+		checkCell(row - 1, col - 1);
 	}
 
-	return cellIsCorrect;
+	if (number != 0)
+		nOfCellsFilled++;
+}
+
+void Sudoku::eraseNumber(int row, int col)
+{
+	if (board[row - 1][col - 1].isModifiable())
+	{
+		board[row - 1][col - 1].setValue(0);
+		checkCell(row - 1, col - 1);
+	}
+
+	nOfCellsFilled--;
+}
+
+void Sudoku::checkCell(int row, int col)
+{
+	int value = board[row][col].getValue();
+
+	if ((value + '0') == correctValues.at((row*MAX_ROWS) + col))
+		board[row][col].setCorrect(true);
+	else
+		board[row][col].setCorrect(false);
+}
+
+bool Sudoku::isCorrect()
+{
+	if (nOfCellsFilled == MAX_ROWS * MAX_COLS)
+	{
+		bool cellIsCorrect(true);
+		int row(0);
+		int col(0);
+
+		while (cellIsCorrect && row < MAX_ROWS && col < MAX_COLS)
+		{
+			cellIsCorrect = board[row][col].isCorrect();
+			col++;
+
+			if (col == MAX_COLS)
+			{
+				col = 0;
+				row++;
+			}
+		}
+		m_isCorrect = cellIsCorrect;
+	}
+	
+	return m_isCorrect;
+		
+}
+
+void Sudoku::askForInsert()
+{
+	console.printMsg(numberDesc);
+	console.showPrompt(userPrompt);
+}
+
+void Sudoku::askForErase()
+{
+	console.printMsg(eraseNumberDesc);
+	console.showPrompt(userPrompt);
 }
 
 void Sudoku::printBoard()
@@ -98,6 +142,23 @@ void Sudoku::printMenu()
 	console.printMsg(returnDesc);
 	console.jumpToNextLine();
 	console.showPrompt(userPrompt);
+}
+
+void Sudoku::update()
+{
+	console.clearConsole();
+	printBoard();
+	printMenu();
+}
+
+void Sudoku::printFinalMsg()
+{
+	console.clearConsole();
+
+	if (m_isCorrect)
+		console.printMsg(victoryMsg);
+	else
+		console.printMsg(defeatMsg);
 }
 
 void Sudoku::originalLoadValues(const std::string & fileName)
