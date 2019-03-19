@@ -3,7 +3,9 @@
 int main()
 {
 	Sudoku testSudoku;
-	testSudoku.loadSudokuFromFiles("boardsFile.txt", "resultsFile.txt");
+	testSudoku.loadSudokuFromFile("inputFile.txt");
+	testSudoku.printBoard();
+	testSudoku.printMenu();
 	std::cin.get();
 	return 0;
 }

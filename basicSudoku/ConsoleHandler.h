@@ -7,19 +7,24 @@ class ConsoleHandler
 public:
 	ConsoleHandler();
 	~ConsoleHandler();
-	void printMsg(const std::string& buffer);
 
+	void printMsg(const std::string& buffer);
+	void clearConsole();
+	void jumpToNextLine();
+	void showPrompt(const std::string& prompt);
 private:
 	COORD origin;
+	COORD initialCursorPosition;
+	short promptPositionX;
 	short screenCenter;
 	short currentY;
-	static const short OFFSET_Y = 5;
+	static const short TOP_MARGIN = 5;
 
 	HANDLE console;
 	CONSOLE_CURSOR_INFO cursorInfo;
 	CONSOLE_SCREEN_BUFFER_INFO screenBuffer;
 	DWORD written;
 	
-	void jumpToNextLine();
+	
 };
 
