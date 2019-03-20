@@ -1,9 +1,12 @@
 #include <iostream>
-#include "Sudoku.h"
 #include <sstream>
+#include "Sudoku.h"
 
 bool processInput(Sudoku& s)
 {
+	HANDLE console;
+	console = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	bool keepPlaying(true);
 	try
 	{
@@ -68,6 +71,7 @@ bool processInput(Sudoku& s)
 
 	catch (const std::out_of_range& oor)
 	{
+		SetConsoleCursorPosition(console, s.getCurrentCursorPos());
 		std::cerr << oor.what() << ", introduce numbers from 1 to 9";
 		std::cin.get();
 		return keepPlaying;
@@ -75,6 +79,7 @@ bool processInput(Sudoku& s)
 
 	catch (const std::invalid_argument& ia)
 	{
+		SetConsoleCursorPosition(console, s.getCurrentCursorPos());
 		std::cerr << "Invalid input, introduce numbers from 1 to 9";
 		std::cin.get();
 		return keepPlaying;
@@ -82,6 +87,7 @@ bool processInput(Sudoku& s)
 
 	catch (const char* msg)
 	{
+		SetConsoleCursorPosition(console, s.getCurrentCursorPos());
 		std::cerr << msg;
 		std::cin.get();
 		return keepPlaying;

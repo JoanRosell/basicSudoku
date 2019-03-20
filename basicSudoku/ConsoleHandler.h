@@ -12,6 +12,8 @@ public:
 	void clearConsole();
 	void jumpToNextLine();
 	void showPrompt(const std::string& prompt);
+	COORD getCurrentCursorPos() { return { screenCenter - 20, ++currentY }; }
+
 private:
 	COORD origin;
 	COORD initialCursorPosition;
