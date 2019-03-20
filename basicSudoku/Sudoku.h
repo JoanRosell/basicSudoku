@@ -44,8 +44,8 @@ private:
 	const std::string eraseDesc = "To erase a number from the sudoku press 'e'";
 	const std::string returnDesc = "To end the game press 'f'";
 	const std::string userPrompt = ">> ";
-	const std::string victoryMsg = "Congratulations, you won";
-	const std::string defeatMsg = "Better luck next time";
+	const std::string victoryMsg = "Congratulations, you win!";
+	const std::string defeatMsg = "See you next time";
 
 	//	DEPRECATED METHODS
 	void originalLoadValues(const std::string& fileName);

@@ -55,6 +55,12 @@ void Sudoku::loadBoardFromString()
 
 void Sudoku::setNumber(int number, int row, int col)
 {
+	if (row < 1 || row > 9 || col < 1 || col > 9)
+		throw std::out_of_range("Invalid position accessed");
+
+	if (number < 1 || number > 9)
+		throw "Invalid value";
+
 	if (board[row - 1][col - 1].isModifiable())
 	{
 		board[row - 1][col - 1].setValue(number);
@@ -67,6 +73,9 @@ void Sudoku::setNumber(int number, int row, int col)
 
 void Sudoku::eraseNumber(int row, int col)
 {
+	if (row < 1 || row > 9 || col < 1 || col > 9)
+		throw std::out_of_range("Invalid position accessed");
+
 	if (board[row - 1][col - 1].isModifiable())
 	{
 		board[row - 1][col - 1].setValue(0);
