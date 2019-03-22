@@ -6,8 +6,8 @@ bool processInput(Sudoku& s)
 {
 	HANDLE console;
 	console = GetStdHandle(STD_OUTPUT_HANDLE);
-
 	bool keepPlaying(true);
+
 	try
 	{
 		std::string line;
@@ -26,6 +26,7 @@ bool processInput(Sudoku& s)
 			std::string value;
 			std::string row;
 			std::string col;
+
 			lineStream >> value;
 			lineStream >> row;
 			lineStream >> col;
