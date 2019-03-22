@@ -117,13 +117,24 @@
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="ConsoleHandler.cpp" />
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="fileHandler.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="Sudoku.cpp" />
+    <ClCompile Include="userInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="ConsoleHandler.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="fileHandler.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="Sudoku.h" />
+    <ClInclude Include="syncFile.h" />
+    <ClInclude Include="userInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="inputFile.txt" />

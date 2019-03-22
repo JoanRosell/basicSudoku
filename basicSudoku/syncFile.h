@@ -1,6 +1,6 @@
 #pragma once
 
-enum state
+const enum state
 {
 	START = 0,
 	MAIN_MENU,
