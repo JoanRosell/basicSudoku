@@ -6,6 +6,7 @@
 #include "Cell.h"
 #include "ConsoleHandler.h"
 
+using namespace std;
 class Sudoku
 {
 public:
@@ -21,6 +22,8 @@ public:
 	void printMenu();
 	void update();
 	void printFinalMsg();
+	std::string getOriginalValues() const { return originalValues; }
+	std::string getCorrectValues() const { return correctValues; }
 
 private:
 	static const int MAX_ROWS = 9;
